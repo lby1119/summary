@@ -1,0 +1,25 @@
+ubuntu 20.04 LTS 更换阿里云源
+第一步：先备份下原始源：
+
+sudo cp /etc/apt/source.list /etc/apt/source.list.backup
+第二步：修改文件   
+
+vim  /etc/apt/source.list
+清除原有的，替换以下源
+
+复制代码
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted
+deb http://mirrors.aliyun.com/ubuntu/ focal universe
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ focal multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted
+deb http://mirrors.aliyun.com/ubuntu/ focal-security universe
+deb http://mirrors.aliyun.com/ubuntu/ focal-security multiverse
+复制代码
+ 保存下，即可执行更新
+
+sudo  apt update
+sudo  apt upgrade

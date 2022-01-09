@@ -1,0 +1,38 @@
+-- --创建函数 
+-- create FUNCTION hello_fun() returns VARCHAR(20)
+-- BEGIN
+-- RETURN 'hello sql';
+-- end
+-- show FUNCTION STATUS
+-- select hello_fun()
+-- delimiter $$ 
+-- DROP FUNCTION IF EXISTS hello_say$$
+-- create function hello_say(uname VARCHAR(10)) returns VARCHAR(20) 
+-- begin 
+-- return CONCAT('hello--',uname);
+-- end 
+-- $$ 
+-- delimiter ; 
+-- select hello_say('李伟')  --调用
+-- select hello_say(sname) as name from tb_student  --调用
+
+CREATE FUNCTION `total_record_var`() RETURNS varchar(200) CHARSET utf8
+begin 
+-- DECLARE total_count int default 0;
+SELECT count(1) from tb_student into @total_count_student;
+SELECT count(1) from tb_course into @total_count_course;
+return CONCAT('学生表中的数据记录是--',@total_count_student,'课程表中的数据记录是--',@total_count_course);
+end
+
+-- delimiter $$ 
+-- DROP FUNCTION IF EXISTS fun_if$$
+-- create function fun_if(age int) returns VARCHAR(100) 
+-- begin 
+-- if age<20 THEN set @msg='嘿 你还不到20岁';
+-- else set @msg='嘿 你已经操作20岁 可以参军 报效祖国了';
+-- END if;
+-- return @msg;
+-- end 
+-- $$ 
+-- delimiter ; 
+SELECT fun_if(10)

@@ -1,0 +1,63 @@
+
+安装完毕首先修改密码
+# 命令安装
+
+sudo apt-get update
+
+sudo apt-get install -y mysql-server 
+
+ 
+
+# 进入mysql命令行
+
+mysql -udebian-sys-maint -p
+
+# 输入/etc/mysql/debian.cnf中的password
+
+ 
+
+# 修改密码
+
+use mysql;
+
+update user set authentication_string='123456' where user='root';
+
+FLUSH PRIVILEGES;
+
+
+
+ubuntu系统mysql8忘记root密码修改
+
+
+
+1 停止mysql服务
+
+service mysqld start
+
+2 增加参数运行 skip-grant-tables参数为忽略用户验证
+
+mysqld --skip-grant-tables --user=mysql
+
+3 打开另一个终端，mysql -uroot可以登录到mysql数据库
+
+4 在mysql终端中切换包含用户信息的名称为mysql的数据库
+
+use mysql;
+
+5 运行更新用户密码的sql语句，mysql 5.7.20版本中用户密码字段为authentication_string
+
+更新root用户密码为空的sql
+
+update user set authentication_string='' where user='root';
+
+更新root用户密码为复杂字符串的sql，mysql会检查如果密码简单不能通过
+
+update user set authentication_string=password('Abc@123') where user='root';
+
+6 关闭mysqld进程，使用ps aux | grep mysqld找到进程id，然后使用kill -9 id关闭mysqld进程
+
+7 使用系统服务启动mysql服务器
+
+service mysqld start
+
+再次使用mysql命令，使用修改的密码可以登录

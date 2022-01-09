@@ -1,0 +1,24 @@
+delimiter就是告诉mysql解释器，该段命令是否已经结束了，
+是否可以执行了。默认情况下，delimiter是分号;，遇到分号就执行。
+后面的双美元符号 就是告诉mysql，遇到双美元符号再执行
+
+这是正确的存储过程写法，可以成功执行，增加了DELIMITER，
+简单解释下这个命令的用途，在MySQL中每行命令都是用“；”结尾，
+回车后自动执行，在存储过程中“；”往往不代表指令结束，马上运行，
+而DELIMITER原本就是“；”的意思，因此用这个命令转换一下“；”为 “//”，这样
+只有收到“//”才认为指令结束可以执行
+-- delimiter //
+-- create PROCEDURE qiuzhi_test_pro()
+-- BEGIN
+-- select * from tb_student where gender='1';
+-- END
+-- //
+-- delimiter
+-- 查看所有的存储过程
+-- show PROCEDURE STATUS; 
+-- --调用存储过程
+CALL qiuzhi_test_pro()
+没有添加索引的时间
+500086	0.0702345	select * from myindex where test='test400000'
+添加完索引的时间
+500117	0.000352	select * from myindex where test='test400000'

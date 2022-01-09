@@ -1,0 +1,62 @@
+条件查询：
+
+比较条件 跟在 where后面  > < =  !=   <>
+in 查询 指定一个数据容器
+between  表示一个区间   1 and 10    还可以表示一个时间范围
+
+null值的判断 如果是一个空值对象 is去判断
+
+若是 空字符串的话 则可以使用 = 去判断
+
+order by 字段1、字段2  排序【asc、desc】
+
+聚合函数：
+count函数  max函数 min函数 length函数 
+数学函数：
+
+avg函数  round函数 时间函数 
+
+字符函数：
+substr(对象,start,lenght)
+
+left right
+
+分组和分页
+group by 字段
+
+起别名 as 
+
+分组条件的筛选 where having区别：都是用来限定条件的
+
+where是跟在from之后
+
+having区别 用在group by之后
+
+limit分页  select * from student limit start【读取的位置】，count【读取的数量】
+
+连接查询：
+mysql有三种连接查询：
+内连接 inner join  两种表共同的数据项
+外连接：left join  参考左边的表为基准查询表，右边的表用null填充
+right join 参考右边的表为基准查询表，左边的表用null填充
+
+子查询：
+1：标量子查询 一行一列 单个值
+2：列级子查询  一行多列 多个值
+3：行级子查询  多行一列、
+4：表级子查询  多行多列 【用来做数据源了】
+
+保存查询结果：
+
+insert into 表 select 查询来充当数据源
+
+union 去重的效果
+
+union all 将多次查询的结果合并输出
+
+
+
+
+
+
+

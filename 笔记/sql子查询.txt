@@ -1,0 +1,24 @@
+sql语句中any、some、all的使用
+
+都是用在子查询里面 用作比较运算
+
+any 表示任意一个  有一个满足了结果就为true  和some是一样的效果
+all 全部满足了 结果才为True
+
+场景：
+查询出在学生表当中  2班级的学生年龄 都大于1班级的所有同学、
+
+select * from students where class_id=2 and age>all(select age from students where class_id=1)
+
+select * from students where class_id=2 and age>(select max(age) from students where class_id=1)
+
+查询出在学生表当中  2班级的学生年龄 任意一个大于1班级的所有同学、
+
+select * from students where class_id=2 and age>any(select age from students where class_id=1)
+
+select * from students where class_id=2 and age>(select min(age) from students where class_id=1)
+
+
+表级查询
+
+select t1.xs,t1.banji from (select b1.name as xs ,b2.name banji from students as b1 inner join class as b2 on b1.class_id=b2.id) as t1
